@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.Admin
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Admin Ekleme Sayfası</h2>
+<br />
+@* Html yazdıktan sonra gelen methotlar HtmlHelper olarak adlandırılır*@
+@using (Html.BeginForm("AddAdmin", "Authorization", FormMethod.Post))
+//BeginForm ekleme veya güncelleme işlemlerinde kullanılır 3 parametresi vardır
+//       1.parametre hangi actionda çalışıtığı, 2.parametre hangi controllerda çalıştığı
+//        3.parametre iste post mu get mi
+{
+<div class="form-group">
+    @Html.Label("Admin Adı")
+    @Html.TextBoxFor(x => x.AdminUserName, new { @class = "form-control" })
+    <br>
+    @Html.Label("Şifre girin")
+    @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control" })
+    <br>
+    @Html.Label("Rol")
+    @Html.DropDownListFor(x => x.AdminRole, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
+
+    <br>
+    <button class="btn btn-info">Kaydet</button>
+</div>
+}
